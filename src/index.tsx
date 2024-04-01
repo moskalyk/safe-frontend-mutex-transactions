@@ -18,7 +18,7 @@ function Dapp() {
   const projectAccessKey = 'AQAAAAAAAD_rgakMniSS8s4oosPHdzTjnfI'
 
   const connectors = getDefaultConnectors({
-    walletConnectProjectId: '458215b98fce3f9f700f2c233b932ae1',
+    walletConnectProjectId: '',
     defaultChainId: 421614,
     appName: 'demo app',
     projectAccessKey

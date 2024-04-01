@@ -29,14 +29,13 @@ function App() {
     if(address && !mutexMint.isLocked()) {
       mutexMint.run(async () => {
         try {
-
           mutexMint.lock();
 
-          const erc721Interface = new ethers.utils.Interface([
+          const erc1155Interface = new ethers.utils.Interface([
             'function mint(address to, uint256 tokenId, uint256 amount, bytes data) returns ()'
           ])
 
-          const data = erc721Interface.encodeFunctionData(
+          const data = erc1155Interface.encodeFunctionData(
             'mint', [address, Math.floor(Math.random() * 6), 1, '0x00']
           )
 
@@ -71,7 +70,6 @@ function App() {
     if(address && !mutexTransfer.isLocked()) {
       mutexTransfer.run(async () => {
         try {
-          console.log('testing')
           mutexTransfer.lock();
 
           const erc1155Interface = new ethers.utils.Interface([
@@ -81,8 +79,6 @@ function App() {
           const data = erc1155Interface.encodeFunctionData(
             'safeTransferFrom', [address, address, Math.floor(Math.random() * 6), 1, '0x00']
           )
-
-          console.log(data)
 
           sendTransaction({ to: '0x1693ffc74edbb50d6138517fe5cd64fd1c917709', data: `0x${data.slice(2,data.length)}`, gas: null }) 
         } catch (err) {
