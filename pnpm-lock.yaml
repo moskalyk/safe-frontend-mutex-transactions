@@ -8,6 +8,9 @@ dependencies:
   0xsequence:
     specifier: ^1.9.13
     version: 1.9.13(ethers@5.7.2)
+  '@0xsequence/indexer':
+    specifier: ^1.9.13
+    version: 1.9.13
   '@0xsequence/kit':
     specifier: ^2.0.8
     version: 2.0.8(0xsequence@1.9.13)(@types/react-dom@18.2.23)(@types/react@18.2.73)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(viem@2.9.6)(wagmi@2.5.16)
