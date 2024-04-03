@@ -9,9 +9,7 @@ import { useMutex } from 'react-context-mutex';
 
 import { ethers } from 'ethers'
 
-import SequenceMarketABI from "./ISequenceMarketplace.json";
 import { sequence } from '0xsequence';
-
 import { SequenceIndexer } from '@0xsequence/indexer'
 
 const ERC1155Contract = '0x1693ffc74edbb50d6138517fe5cd64fd1c917709'
@@ -313,26 +311,19 @@ function App() {
 
     if(await checkERC20Balance(requiredAmount)){
       if((await checkERC20Approval(address!,MarketPlaceContract,ArbSepoliaUSDCContract,requiredAmount))){
-        console.log('token approved')
         sendTransaction({
           to: MarketPlaceContract,
           data: `0x${data.slice(2,data.length)}`,
           gas: null
         })
       } else {
-        console.log('not approved')
 
         const erc20Interface = new ethers.utils.Interface([
           "function approve(address spender, uint256 amount) external returns (bool)"
         ]);
         
-        // Specify the address of the spender
         const spenderAddress = "0xB537a160472183f2150d42EB1c3DD6684A55f74c";
-        
-        // Use the maximum uint256 value to represent an "infinite" amount
         const maxUint256 = ethers.constants.MaxUint256;
-        
-        // Encode the transaction data for approving the spender to spend an "infinite" amount
         const dataApprove = erc20Interface.encodeFunctionData("approve", [spenderAddress, maxUint256]);
         
         if(isSequence){
